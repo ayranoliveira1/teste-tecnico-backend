@@ -7,11 +7,17 @@ export class InMemoryTaskRepository implements TaskRepository {
   async findById(id: string) {
     const task = this.items.find((item) => item.id.toString() === id)
 
-    if (!task) {
-      return null
-    }
+    if (!task) return null
 
     return task
+  }
+
+  async findMany(userId: string) {
+    const tasks = this.items.filter((item) => item.userId.toString() === userId)
+
+    if (tasks.length === 0) return null
+
+    return tasks
   }
 
   async create(task: Task) {
