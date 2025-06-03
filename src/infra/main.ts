@@ -21,7 +21,9 @@ async function bootstrap() {
 
   const documentFactory = () => SwaggerModule.createDocument(app, swaggerConfig)
 
-  SwaggerModule.setup('api', app, documentFactory)
+  SwaggerModule.setup('docs', app, documentFactory, {
+    jsonDocumentUrl: 'docs/json',
+  })
 
   const envService = app.get(EnvService)
   const port = envService.get('PORT')

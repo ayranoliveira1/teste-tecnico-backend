@@ -17,6 +17,8 @@ import { UpdateTaskController } from './controllers/task/update-task.controller'
 import { UpdateTaskUseCase } from '@/domain/application/use-case/task/update-task'
 import { DeleteTaskController } from './controllers/task/delete-task.controller'
 import { DeleteTaskUseCase } from '@/domain/application/use-case/task/delete-task'
+import { GetTasksByStatusController } from './controllers/task/get-tasks-by-status.controller'
+import { GetTasksByStatusUseCase } from '@/domain/application/use-case/task/get-tasks-by-status'
 
 @Module({
   imports: [DataBaseModule, CryptographyModule],
@@ -27,6 +29,7 @@ import { DeleteTaskUseCase } from '@/domain/application/use-case/task/delete-tas
     CreateTaskController,
     GetTasksController,
     GetTaskByIdController,
+    GetTasksByStatusController,
     UpdateTaskController,
     DeleteTaskController,
   ],
@@ -37,6 +40,7 @@ import { DeleteTaskUseCase } from '@/domain/application/use-case/task/delete-tas
     CreateTaskUseCase,
     GetTasksUseCase,
     GetTaskByIdUseCase,
+    GetTasksByStatusUseCase,
     UpdateTaskUseCase,
     DeleteTaskUseCase,
   ],
