@@ -14,6 +14,11 @@ import { Response } from 'express'
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
 import { InvalidCredentialsError } from '@/domain/application/use-case/errors/invalid-credentials-error'
 import { UserPresenter } from '../../presenters/user-presenter'
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import {
+  AuthenticateUserSwaggerDto,
+  AuthenticateUserSwaggerResponse,
+} from './docs/authenticate-user-swagger'
 
 const authenticateBodySchema = z.object({
   email: z.string().email(),
@@ -26,11 +31,26 @@ const bodyValidationType = new ZodValidationPipe(authenticateBodySchema)
 
 @Controller('/auth/login')
 @Public()
+@ApiTags('Authentication')
 export class AuthenticateUserController {
   constructor(private authenticateUser: AuthenticateUserUseCase) {}
 
   @Post()
   @HttpCode(201)
+  @ApiOperation({
+    summary: 'Authenticate user',
+    description: 'Endpoint to authenticate a user and return a JWT token.',
+  })
+  @ApiBody({ type: AuthenticateUserSwaggerDto })
+  @ApiResponse({
+    status: 201,
+    description: 'User authenticated successfully.',
+    type: AuthenticateUserSwaggerResponse,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Invalid credentials.',
+  })
   async handle(
     @Body(bodyValidationType) body: AuthenticateBodyType,
     @Res({ passthrough: true }) res: Response,
