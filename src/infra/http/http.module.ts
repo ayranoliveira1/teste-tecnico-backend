@@ -15,6 +15,8 @@ import { GetTaskByIdController } from './controllers/task/get-task-by-id.control
 import { GetTaskByIdUseCase } from '@/domain/application/use-case/task/get-task-by-id'
 import { UpdateTaskController } from './controllers/task/update-task.controller'
 import { UpdateTaskUseCase } from '@/domain/application/use-case/task/update-task'
+import { DeleteTaskController } from './controllers/task/delete-task.controller'
+import { DeleteTaskUseCase } from '@/domain/application/use-case/task/delete-task'
 
 @Module({
   imports: [DataBaseModule, CryptographyModule],
@@ -26,6 +28,7 @@ import { UpdateTaskUseCase } from '@/domain/application/use-case/task/update-tas
     GetTasksController,
     GetTaskByIdController,
     UpdateTaskController,
+    DeleteTaskController,
   ],
   providers: [
     RegisterUseCase,
@@ -35,6 +38,7 @@ import { UpdateTaskUseCase } from '@/domain/application/use-case/task/update-tas
     GetTasksUseCase,
     GetTaskByIdUseCase,
     UpdateTaskUseCase,
+    DeleteTaskUseCase,
   ],
 })
 export class HttpModule {}
