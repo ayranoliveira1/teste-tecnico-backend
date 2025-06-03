@@ -5,7 +5,9 @@ export class InMemoryTaskRepository implements TaskRepository {
   public items: Task[] = []
 
   async findById(id: string) {
-    const task = this.items.find((item) => item.id.toString() === id)
+    const task = this.items.find(
+      (item) => item.id.toString() === id && item.isDeleted === false,
+    )
 
     if (!task) return null
 
@@ -13,7 +15,9 @@ export class InMemoryTaskRepository implements TaskRepository {
   }
 
   async findMany(userId: string) {
-    const tasks = this.items.filter((item) => item.userId.toString() === userId)
+    const tasks = this.items.filter(
+      (item) => item.userId.toString() === userId && item.isDeleted === false,
+    )
 
     if (tasks.length === 0) return null
 
