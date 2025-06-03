@@ -24,6 +24,19 @@ export class InMemoryTaskRepository implements TaskRepository {
     return tasks
   }
 
+  async findManyByStatus(userId: string, status: 'pending' | 'completed') {
+    const tasks = this.items.filter(
+      (item) =>
+        item.userId.toString() === userId &&
+        item.isDeleted === false &&
+        item.status === status,
+    )
+
+    if (tasks.length === 0) return null
+
+    return tasks
+  }
+
   async create(task: Task) {
     this.items.push(task)
   }
