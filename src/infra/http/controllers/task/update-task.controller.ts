@@ -13,6 +13,8 @@ import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { UserPayload } from '@/infra/auth/jwt-strategy'
 import { ResourceNotFoundError } from '@/core/@types/errors/resource-not-found-error'
 import { NotAllowedError } from '@/core/@types/errors/not-allowed-error'
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { UpdateTaskSwaggerDto } from './docs/update-tasks-swagger'
 
 const updateTaskBodySchema = z.object({
   title: z.string().min(1),
@@ -26,10 +28,23 @@ type UpdateTaskBodyType = z.infer<typeof updateTaskBodySchema>
 const bodyValidationType = new ZodValidationPipe(updateTaskBodySchema)
 
 @Controller('/tasks/:taskId')
+@ApiTags('Tasks')
 export class UpdateTaskController {
   constructor(private updateTaskUseCase: UpdateTaskUseCase) {}
 
   @Put()
+  @ApiOperation({
+    summary: 'Update a task',
+    description:
+      'Endpoint to update an existing task for the authenticated user.',
+  })
+  @ApiBody({
+    type: UpdateTaskSwaggerDto,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Task updated successfully.',
+  })
   async handle(
     @CurrentUser() user: UserPayload,
     @Param('taskId') taskId: string,

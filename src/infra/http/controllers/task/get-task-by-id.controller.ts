@@ -11,12 +11,25 @@ import { ResourceNotFoundError } from '@/core/@types/errors/resource-not-found-e
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { UserPayload } from '@/infra/auth/jwt-strategy'
 import { NotAllowedError } from '@/core/@types/errors/not-allowed-error'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import { GetTaskByIdSwaggerResponse } from './docs/get-task-by-id-swagger'
 
 @Controller('/tasks/:taskId')
+@ApiTags('Tasks')
 export class GetTaskByIdController {
   constructor(private getTaskByIdUseCase: GetTaskByIdUseCase) {}
 
   @Get()
+  @ApiOperation({
+    summary: 'Get task by ID',
+    description:
+      'Retrieves a specific task by its ID for the authenticated user.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Successfully retrieved the task.',
+    type: GetTaskByIdSwaggerResponse,
+  })
   async handle(
     @CurrentUser() user: UserPayload,
     @Param('taskId') taskId: string,

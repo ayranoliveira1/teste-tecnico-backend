@@ -4,6 +4,11 @@ import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
 import { CreateTaskUseCase } from '@/domain/application/use-case/task/create-task'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { UserPayload } from '@/infra/auth/jwt-strategy'
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
+import {
+  CreateTaskSwaggerDto,
+  CreateTaskSwaggerResponse,
+} from './docs/create-task-swagger'
 
 const createTaskBodySchema = z.object({
   title: z.string().min(1),
@@ -17,10 +22,23 @@ type CreateTaskBodyType = z.infer<typeof createTaskBodySchema>
 const bodyValidationType = new ZodValidationPipe(createTaskBodySchema)
 
 @Controller('/tasks')
+@ApiTags('Tasks')
 export class CreateTaskController {
   constructor(private createTaskUseCase: CreateTaskUseCase) {}
 
   @Post()
+  @ApiOperation({
+    summary: 'Create a new task',
+    description: 'Endpoint to create a new task for the authenticated user.',
+  })
+  @ApiBody({
+    type: CreateTaskSwaggerDto,
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Task created successfully.',
+    type: CreateTaskSwaggerResponse,
+  })
   async handle(
     @CurrentUser() user: UserPayload,
     @Body(bodyValidationType) body: CreateTaskBodyType,

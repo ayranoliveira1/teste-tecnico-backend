@@ -10,12 +10,23 @@ import {
   Param,
   Put,
 } from '@nestjs/common'
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 @Controller('/tasks/delete/:taskId')
+@ApiTags('Tasks')
 export class DeleteTaskController {
   constructor(private deleteTaskUseCase: DeleteTaskUseCase) {}
 
   @Put()
+  @ApiOperation({
+    summary: 'Delete a task',
+    description:
+      'Endpoint to delete an existing task for the authenticated user.',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Task deleted successfully.',
+  })
   async handle(
     @CurrentUser() user: UserPayload,
     @Param('taskId') taskId: string,

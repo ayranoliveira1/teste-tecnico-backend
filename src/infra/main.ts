@@ -16,7 +16,6 @@ async function bootstrap() {
     .setTitle('To-do API')
     .setDescription('To-do API Description')
     .setVersion('1.0')
-    .addTag('to-do')
     .build()
 
   const documentFactory = () => SwaggerModule.createDocument(app, swaggerConfig)
