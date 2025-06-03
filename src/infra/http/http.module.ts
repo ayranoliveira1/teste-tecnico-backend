@@ -11,6 +11,8 @@ import { CreateTaskController } from './controllers/task/create-task.controller'
 import { CreateTaskUseCase } from '@/domain/application/use-case/task/create-task'
 import { GetTasksController } from './controllers/task/get-tasks.controller'
 import { GetTasksUseCase } from '@/domain/application/use-case/task/get-tasks'
+import { GetTaskByIdController } from './controllers/task/get-taks-by-id.controller'
+import { GetTaskByIdUseCase } from '@/domain/application/use-case/task/get-task-by-id'
 
 @Module({
   imports: [DataBaseModule, CryptographyModule],
@@ -20,6 +22,7 @@ import { GetTasksUseCase } from '@/domain/application/use-case/task/get-tasks'
     RefreshTokenController,
     CreateTaskController,
     GetTasksController,
+    GetTaskByIdController,
   ],
   providers: [
     RegisterUseCase,
@@ -27,6 +30,7 @@ import { GetTasksUseCase } from '@/domain/application/use-case/task/get-tasks'
     RefreshTokenUseCase,
     CreateTaskUseCase,
     GetTasksUseCase,
+    GetTaskByIdUseCase,
   ],
 })
 export class HttpModule {}
