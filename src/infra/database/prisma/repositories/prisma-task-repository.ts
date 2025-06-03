@@ -61,16 +61,18 @@ export class PrismaTaskRepository implements TaskRepository {
 
     await this.prisma.task.update({
       where: {
-        id: task.id.toString(),
+        id: data.id,
       },
       data,
     })
   }
 
   async delete(task: Task) {
+    const data = PrismaTaskMapper.toPrisma(task)
+
     await this.prisma.task.update({
       where: {
-        id: task.id.toString(),
+        id: data.id,
       },
       data: {
         isDeleted: true,

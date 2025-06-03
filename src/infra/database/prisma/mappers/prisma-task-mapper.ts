@@ -4,14 +4,17 @@ import { Prisma, Task as PrismaTask } from '@prisma/client'
 
 export class PrismaTaskMapper {
   static toDomain(raw: PrismaTask): Task {
-    return Task.create({
-      title: raw.title,
-      description: raw.description || undefined,
-      status: raw.status as 'pending' | 'completed',
-      dueDate: raw.dueDate ? new Date(raw.dueDate) : undefined,
-      userId: new UniqueEntityId(raw.userId),
-      isDeleted: raw.isDeleted,
-    })
+    return Task.create(
+      {
+        title: raw.title,
+        description: raw.description || undefined,
+        status: raw.status as 'pending' | 'completed',
+        dueDate: raw.dueDate ? new Date(raw.dueDate) : undefined,
+        userId: new UniqueEntityId(raw.userId),
+        isDeleted: raw.isDeleted,
+      },
+      new UniqueEntityId(raw.id),
+    )
   }
 
   static toPrisma(task: Task): Prisma.TaskUncheckedCreateInput {
