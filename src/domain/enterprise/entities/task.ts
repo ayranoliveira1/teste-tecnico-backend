@@ -8,6 +8,7 @@ export interface TaskProps {
   status: 'pending' | 'completed'
   dueDate?: Date
   userId: UniqueEntityId
+  isDeleted?: boolean
   createdAt: Date
   updatedAt?: Date
 }
@@ -32,7 +33,10 @@ export class Task extends Entity<TaskProps> {
   get userId() {
     return this.props.userId
   }
-  s
+
+  get isDeleted() {
+    return this.props.isDeleted
+  }
 
   get createdAt() {
     return this.props.createdAt
@@ -62,15 +66,24 @@ export class Task extends Entity<TaskProps> {
     this.touch()
   }
 
+  set isDeleted(isDeleted: boolean | undefined) {
+    this.props.isDeleted = isDeleted
+    this.touch()
+  }
+
   private touch() {
     this.props.updatedAt = new Date()
   }
 
-  static create(props: Optional<TaskProps, 'createdAt'>, id?: UniqueEntityId) {
+  static create(
+    props: Optional<TaskProps, 'createdAt' | 'isDeleted'>,
+    id?: UniqueEntityId,
+  ) {
     const task = new Task(
       {
         ...props,
         createdAt: props.createdAt ?? new Date(),
+        isDeleted: props.isDeleted ?? false,
       },
       id,
     )
