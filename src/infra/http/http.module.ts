@@ -9,6 +9,8 @@ import { RefreshTokenController } from './controllers/user/refresh-token.control
 import { RefreshTokenUseCase } from '@/domain/application/use-case/user/refresh-token'
 import { CreateTaskController } from './controllers/task/create-task.controller'
 import { CreateTaskUseCase } from '@/domain/application/use-case/task/create-task'
+import { GetTasksController } from './controllers/task/get-tasks.controller'
+import { GetTasksUseCase } from '@/domain/application/use-case/task/get-tasks'
 
 @Module({
   imports: [DataBaseModule, CryptographyModule],
@@ -17,12 +19,14 @@ import { CreateTaskUseCase } from '@/domain/application/use-case/task/create-tas
     AuthenticateUserController,
     RefreshTokenController,
     CreateTaskController,
+    GetTasksController,
   ],
   providers: [
     RegisterUseCase,
     AuthenticateUserUseCase,
     RefreshTokenUseCase,
     CreateTaskUseCase,
+    GetTasksUseCase,
   ],
 })
 export class HttpModule {}
