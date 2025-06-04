@@ -86,6 +86,7 @@ O projeto segue a **Clean Architecture**, que separa claramente a lógica de neg
 
 ## 🗂️ Estrutura de Pastas
 
+```plaintext
 src/
 ├── core/ # Módulos genéricos e utilitários (erros, DTOs, interfaces)
 ├── domain/ # Camada de domínio (entidades, repositórios, casos de uso)
@@ -103,3 +104,4 @@ src/
 ├── main.ts # Ponto de entrada da aplicação
 
 ---
+```
