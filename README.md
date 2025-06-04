@@ -102,6 +102,6 @@ src/
 │ ├── mappers/
 │ └── presenters/
 ├── main.ts # Ponto de entrada da aplicação
+```
 
 ---
-```
