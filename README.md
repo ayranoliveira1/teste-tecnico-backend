@@ -37,7 +37,7 @@ pnpm install
 
 # Configure as variáveis de ambiente
 cp .env.example .env
-# Edite o arquivo .env com suas credenciais (banco de dados, JWT, Stripe, OpenAI)
+# Edite o arquivo .env com suas credenciais (banco de dados e JWT)
 
 #Iniciar Docker
 docker compose up -d
