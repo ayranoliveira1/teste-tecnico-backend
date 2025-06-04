@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { UserRepository } from '../../repositories/user-repository'
 import { Encrypter } from '../../cryptography/encrypter'
 import { Either, left, right } from '@/core/either'
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../../../../core/@types/errors/invalid-credentials-error'
 
 interface RefreshTokenUseCaseRequest {
   refreshToken: string

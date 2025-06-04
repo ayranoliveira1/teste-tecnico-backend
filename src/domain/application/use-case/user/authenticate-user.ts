@@ -1,5 +1,5 @@
 import { Either, left, right } from '@/core/either'
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../../../../core/@types/errors/invalid-credentials-error'
 import { HashCompare } from '../../cryptography/hash-compare'
 import { Encrypter } from '../../cryptography/encrypter'
 import { Injectable } from '@nestjs/common'

@@ -1,6 +1,6 @@
 import { FakerHasher } from 'test/cryptography/faker-hasher'
 import { FakerEncrypter } from 'test/cryptography/faker-encrypter'
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../../../../core/@types/errors/invalid-credentials-error'
 import { InMemoryUserRepository } from 'test/repositories/in-memory-user-repository'
 import { makeUser } from 'test/factories/make-user'
 import { RefreshTokenUseCase } from './refresh-token'

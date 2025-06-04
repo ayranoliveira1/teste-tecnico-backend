@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common'
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
 import { z } from 'zod'
-import { UserAlreadyExistsError } from '@/domain/application/use-case/errors/user-already-exists-error'
+import { UserAlreadyExistsError } from '@/core/@types/errors/user-already-exists-error'
 import { Public } from '@/infra/auth/public'
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { CreateAccountSwagger } from './docs/create-account-swagger'

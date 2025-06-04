@@ -12,7 +12,7 @@ import {
 import { z } from 'zod'
 import { Response } from 'express'
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe'
-import { InvalidCredentialsError } from '@/domain/application/use-case/errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '@/core/@types/errors/invalid-credentials-error'
 import { UserPresenter } from '../../presenters/user-presenter'
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import {

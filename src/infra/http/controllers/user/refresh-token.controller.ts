@@ -9,7 +9,7 @@ import {
   Req,
 } from '@nestjs/common'
 import { Request, Response } from 'express'
-import { InvalidCredentialsError } from '@/domain/application/use-case/errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '@/core/@types/errors/invalid-credentials-error'
 import { Public } from '@/infra/auth/public'
 import {
   ApiCookieAuth,
