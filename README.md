@@ -56,7 +56,7 @@ pnpm start:dev
 A documentação completa está disponível via Swagger em:
 
 ```
-http://localhost:3001/api
+http://localhost:3001/docs
 ```
 
 ---
@@ -93,14 +93,14 @@ src/
 │ ├── entities/
 │ ├── repositories/
 │ └── use-cases/
-├── infra/ # Implementações de infraestrutura (banco, auth, controllers, mappers)
+├── infra/ # Implementações de infraestrutura (banco, auth, controllers, mappers, presenters)
 │ ├── auth/
 │ ├── database/
 │ ├── env/
 │ ├── http/
-│ ├── controllers/
-│ ├── mappers/
-│ └── presenters/
+│   ├── controllers/
+│   ├── mappers/
+│   └── presenters/
 ├── main.ts # Ponto de entrada da aplicação
 ```
 
